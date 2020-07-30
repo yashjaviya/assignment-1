@@ -1,0 +1,75 @@
+<form [formGroup]="employeeForm">
+    <div class="form-row">
+        <div class="col-md-6">
+            <label for="validationServer01">First name</label>
+            <input class="form-control" class="form-control" type="text" id="firstname" [(ngModel)]="firstname"
+                name="firstname" formControlName="firstname">
+        </div>
+    </div>
+    <div *ngIf="employeeForm.get('firstname').invalid && (employeeForm.get('firstname').dirty || employeeForm.get('firstname').touched)"
+        class="alert alert-danger col-md-6">
+        <div *ngIf="employeeForm.get('firstname').errors.required">
+            Firstname is required.
+        </div>
+        <div *ngIf="employeeForm.get('firstname').errors.pattern">
+            Doesn't allowed Number.
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col-md-6">
+            <label for="validationServer02">Last name</label>
+            <input class="form-control" type="text" id="lastname" formControlName="lastname" [(ngModel)]="lastname"
+                name="lastname">
+        </div>
+    </div>
+    <div *ngIf="employeeForm.get('lastname').invalid && (employeeForm.get('lastname').dirty || employeeForm.get('lastname').touched)"
+        class="alert alert-danger col-md-6">
+        <div *ngIf="employeeForm.get('lastname').errors.required">
+            Lastname is required.
+        </div>
+        <div *ngIf="employeeForm.get('lastname').errors.pattern">
+            Doesn't allowed Number.
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col-md-6">
+            <label for="validationServerUsername">Email</label>
+            <div class="input-group">
+                <input type="email" class="form-control" id="email" formControlName="email" [(ngModel)]="email"
+                    name="email">
+            </div>
+        </div>
+    </div>
+    <div *ngIf="employeeForm.get('email').invalid && (employeeForm.get('email').dirty || employeeForm.get('email').touched)"
+        class="alert alert-danger col-md-6">
+        <div *ngIf="employeeForm.get('email').errors.required">
+            email is required.
+        </div>
+        <div *ngIf="employeeForm.get('email').errors.email">
+            email is incorrect.
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col-md-6">
+            <label for="validationServerUsername">Mobile No.</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="mobileno" formControlName="mobileno" [(ngModel)]="mobileno"
+                    name="mobileno">
+            </div>
+        </div>
+    </div>
+    <div *ngIf="employeeForm.get('mobileno').invalid && (employeeForm.get('mobileno').dirty || employeeForm.get('mobileno').touched)"
+        class="alert alert-danger col-md-6">
+        <div *ngIf="employeeForm.get('mobileno').errors.required">
+            Please, Enter 10 digit Mobile Number.
+        </div>
+        <div *ngIf="employeeForm.get('mobileno').errors.pattern">
+            Please check your Mobile no.
+        </div>
+    </div>
+
+    <button class="btn btn-primary" type="submit" [disabled]="!employeeForm.valid" (click)="update()">Submit</button>
+</form>

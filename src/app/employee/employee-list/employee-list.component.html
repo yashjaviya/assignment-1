@@ -1,0 +1,33 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">First name</th>
+            <th scope="col">Last name</th>
+            <th scope="col">Employee Email</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let employee of employee | paginate: { itemsPerPage: 10, currentPage: no }">
+            <td>
+                {{ employee.id }}
+            </td>
+            <td>
+                {{ employee.firstName }}
+            </td>
+            <td>
+                {{ employee.lastName }}
+            </td>
+            <td>
+                {{ employee.email }}
+            </td>
+            <td>
+                <input type="button" class="btn-primary" value="Update" [routerLink]="['/employee-update',employee.id]">
+                <input type="button" class="btn-danger margin-left-5" value="delete" (click)="delete(employee.id)">
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<pagination-controls (pageChange)="no = $event"></pagination-controls>
